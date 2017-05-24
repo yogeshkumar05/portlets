@@ -4,7 +4,7 @@
   "description": "3 portlets for demonstrating the streaming data, CRUD operations on tree data and demographic statistics",
   "main": "index.js",
   "scripts": {
-    "test": "webpack-dev-server --hot --inline"
+    "start": "webpack-dev-server --hot --inline"
   },
   "repository": {
     "type": "git",
@@ -23,5 +23,22 @@
   "bugs": {
     "url": "https://github.com/yogeshkumar05/portlets/issues"
   },
-  "homepage": "https://github.com/yogeshkumar05/portlets#readme"
+  "homepage": "https://github.com/yogeshkumar05/portlets#readme",
+  "dependencies": {
+    "babel": "^6.23.0",
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.2",
+    "file-loader": "^0.11.1",
+    "node-sass": "^4.5.3",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "sass-loader": "^6.0.5",
+    "style-loader": "^0.18.1",
+    "url-loader": "^0.5.8",
+    "webpack": "^2.6.0",
+    "webpack-dev-server": "^2.4.5"
+  }
 }
