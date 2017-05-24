@@ -1,0 +1,27 @@
+{
+  "name": "portlets",
+  "version": "1.0.0",
+  "description": "3 portlets for demonstrating the streaming data, CRUD operations on tree data and demographic statistics",
+  "main": "index.js",
+  "scripts": {
+    "test": "webpack-dev-server --hot --inline"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yogeshkumar05/portlets.git"
+  },
+  "keywords": [
+    "streaming",
+    "api",
+    "tree",
+    "data",
+    "crud",
+    "demographic"
+  ],
+  "author": "Yogesh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yogeshkumar05/portlets/issues"
+  },
+  "homepage": "https://github.com/yogeshkumar05/portlets#readme"
+}
