@@ -1,8 +1,9 @@
 .portlet-container
 {
     height: 670px;
-    overflow-x:scroll;
-    overflow-y:scroll;
+    // overflow-x:scroll;
+    // overflow-y:scroll;
+    overflow: auto;
     
 }
 
@@ -21,6 +22,23 @@ body
     //height: 600px;
     background: #eee;
     margin: 25px 100px;
-    overflow:scroll;
+    resize: both;
+    overflow: auto;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.footer
+{
+    margin-top: 20px
+}
+
+.resizeBtn
+{
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    margin:auto
 }

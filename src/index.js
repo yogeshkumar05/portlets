@@ -32,25 +32,49 @@ var treeData =
 
 class DisplayPortlets extends React.Component
 {
-  render()
+  constructor()
   {
+    super();
+    this.state={
+            displayPort:false
+        }
+  }
+  render()
+  { 
+        var displayStyle;
+        displayStyle={display: "none"}; 
+    
+        if (this.state.displayPort) {
+          displayStyle = {display: "block"};
+        }
     //alert(window.innerHeight)
   return(
     <div>
       <header><h1 className="main-header">Portlets Demo</h1></header>
       <div className="portlet-container">
-        <StreamingApi/>
-        <div style={{height:window.innerHeight}} className="portlet">
+        <div className="portlet">
+          <StreamingApi/>
+        </div>
+        <div className="portlet">
+          <button className="resizeBtn" onClick={()=>{this.setState({displayPort:true})}} >+</button>
+                <button className="resizeBtn" onClick={()=>{this.setState({displayPort:false})}} >-</button>
+                <div style={displayStyle}>
           <h3>Tree Nodes</h3>
           <TreeNode node={treeData} />
+          </div>
         </div>
-      <Demograph/>
-     </div>
-     <hr/>
-        <footer>
-            <div>&copy2017 Portlets Demo</div>
-            </footer>
+        <div className="portlet">
+          <Demograph/>
+        </div>
+
+      <hr/>
+        <footer className="footer">
+            <div>&copy; 2017 Portlets Demo</div>
+        </footer>
     </div>
+     </div>
+     
+     
   )
   }
 }
