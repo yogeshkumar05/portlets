@@ -1,6 +1,7 @@
 export default function reducer(state = {
   tweets: [],
-  error: null
+  error: null,
+  count:1
 }, action) {
 
   switch (action.type) {
@@ -8,7 +9,7 @@ export default function reducer(state = {
       return Object.assign({}, state, { error: action.payload })
     }
     case "FETCH_STREAM_FULFILLED": {
-      return Object.assign({}, state, { tweets: action.payload });
+      return Object.assign({}, state, { tweets: action.payload, count:action.payload.count });
     }
   }
   return state

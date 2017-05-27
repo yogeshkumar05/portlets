@@ -1,10 +1,20 @@
+@import 'treeNode';
+@import 'streamingApi';
+$color-greay:#eee;
+@mixin portlet-shadow()
+{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 .portlet-container
 {
     height: 670px;
     overflow: auto;
     
 }
-
+.portlet-header
+{
+    padding:5px;
+}
 .main-header
 {
     text-align: center;
@@ -16,19 +26,22 @@ body
 }
 .portlet
 {
-    height: 600px;
-    background: #eee;
+    max-height: 600px;
+    background:$color-greay;
     margin: 25px 100px;
     resize: both;
     overflow: auto;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    @include portlet-shadow;
 }
 
 .footer
 {
     margin-top: 20px
 }
-
+.fixed-div
+{
+ position:fixed;
+}
 .resizeBtn
 {
     background-color: Transparent;
@@ -37,5 +50,7 @@ body
     cursor:pointer;
     overflow: hidden;
     outline:none;
-    margin:auto
+    margin:auto;
+
+   
 }

@@ -9,7 +9,6 @@ import Constants from './common/constants';
 import { DropdownButton, ButtonGroup, MenuItem, Button, ButtonToolbar } from 'react-bootstrap';
 import { Provider } from "react-redux"
 import store from "./store"
-
 const container = document.getElementById('container')
 var treeData = Constants.DEFAULT_TREE_DATA;
 var streamingData = Constants.DEFAULT_STREAMING_DATA;
@@ -22,7 +21,6 @@ class DisplayPortlets extends React.Component {
     }
   }
 
-
   render() {
     var displayStyle;
     displayStyle = { display: "none" };
@@ -32,7 +30,7 @@ class DisplayPortlets extends React.Component {
     }
     return (
       <div>
-        <header><h1 className="main-header"></h1></header>
+        <header><h1 className="main-header">Portlets Demo</h1></header>
         <div className="portlet-container">
           <div className="portlet">
             <StreamingApi data={streamingData} />
@@ -42,7 +40,7 @@ class DisplayPortlets extends React.Component {
             <button className="resizeBtn" onClick={() => { this.setState({ displayPort: false }) }} >-</button>
             <div style={displayStyle}>
               <h3>Tree Nodes</h3>
-              <TreeNode node={treeData} />
+              <TreeNode node={treeData} addFn={this.test} />
             </div>
           </div>
           <div className="portlet">
