@@ -38,5 +38,17 @@ Steps to execute:
 5. execute command: npm start
 6. Open browser and navigate to: http://localhost:1234/
 
+---------------------------------------------------------------------------
+Technologies Used:
+HTML
+CSS
+JavaScript ES6
+ReactJS
+SCSS
+Redux
+Bootstrap
+JSON
+
+
  
 
