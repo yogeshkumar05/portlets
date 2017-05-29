@@ -2,9 +2,20 @@
 3 portlets for demonstrating 
 1. Streaming API, 
 2. CRUD operations on tree data, and 
-3. Demographic statistics
+3. Demographic Graph statistics
 
 All these portlets can be minimized, maximized and resized.
+---------------------------------------------------------------------------
+
+Technologies Used:
+* HTML
+* CSS
+* JavaScript ES6
+* ReactJS
+* SCSS
+* Redux
+* Bootstrap
+* JSON
 
 ---------------------------------------------------------------------------
 Streaming API Demo:
@@ -39,15 +50,7 @@ Steps to execute:
 6. Open browser and navigate to: http://localhost:1234/
 
 ---------------------------------------------------------------------------
-Technologies Used:
-HTML
-CSS
-JavaScript ES6
-ReactJS
-SCSS
-Redux
-Bootstrap
-JSON
+
 
 
  
