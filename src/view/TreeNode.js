@@ -3,20 +3,22 @@ import ReactDOM from 'react-dom';
 import classNames from 'classNames';
 import { addNodeAction } from './../actions/treeActions'
 import { DropdownButton, MenuItem, SplitButton, Modal, Button } from 'react-bootstrap';
+
 export default class TreeNode extends React.Component {
   constructor(props) {
     super(props);
     let nodes = this.props.node;
     this.state = {
-      visible: true,
+      showChildren: true,
       treeData: nodes,
       showModal: false,
       addEditFlag: false,
       deleteFlag: false,
-      nodeTextValue: ""
+      nodeTextValue: "",
+      disableNode: false
     };
 
-    this.toggle = this.toggle.bind(this);
+    this.toggleChildren = this.toggleChildren.bind(this);
     this.addNode = this.addNode.bind(this);
     this.updateNode = this.updateNode.bind(this);
     this.deleteNode = this.deleteNode.bind(this);
@@ -27,12 +29,11 @@ export default class TreeNode extends React.Component {
     this.setState({ nodeTextValue: event.target.value });
   }
 
-  toggle() {
-    this.setState({ visible: !this.state.visible });
+  toggleChildren() {
+    this.setState({ showChildren: !this.state.showChildren });
   }
   addNode() {
     addNodeAction(this.state.treeData, this.state.nodeTextValue)
-
     let treeData = this.state.treeData;
     if (treeData.childNodes == undefined)
       treeData.childNodes = [];
@@ -52,10 +53,14 @@ export default class TreeNode extends React.Component {
     treeData.childNodes = [];
     this.setState({ treeData, showModal: false, deleteFlag: false });
   }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.node != undefined && nextProps.node != this.props.node) {
+      this.setState({ treeData: nextProps.node })
+    }
+
+  }
 
   render() {
-
-
     let modalTitle = this.state.addEditFlag == true ? "Add New Child for Node: " + this.state.treeData.title : "Update the Node";
     modalTitle = this.state.deleteFlag == true ? "Delete Node: " + this.state.treeData.title : modalTitle;
 
@@ -66,38 +71,30 @@ export default class TreeNode extends React.Component {
 
 
     var childNodes;
-    var classObj;
-
     if (this.state.treeData.childNodes != null) {
       childNodes = this.state.treeData.childNodes.map(function (treeDataEntry, index) {
         return (<li key={index}><TreeNode node={treeDataEntry} />
 
         </li>);
       });
-
-      classObj = {
-        togglable: true,
-        "togglable-down": this.state.visible,
-        "togglable-up": !this.state.visible
-      };
     }
 
-    var style;
-    if (!this.state.visible) {
-      style = { display: "none" };
+    var displayStyle;
+    if (!this.state.showChildren) {
+      displayStyle = { display: "none" };
     }
 
     return (
-
       <div className="tree-div">
-        {this.state.treeData.title != "" ? <SplitButton bsStyle="default" title={this.state.treeData.title} onClick={this.toggle} id="split-button-basic">
-          <MenuItem eventKey="1" onClick={() => { this.setState({ showModal: true, addEditFlag: true }) }}>Add</MenuItem>
-          <MenuItem eventKey="2" onClick={() => { this.setState({ showModal: true, addEditFlag: false, nodeTextValue: this.state.treeData.title }) }}>Edit</MenuItem>
-          <MenuItem eventKey="3" onClick={() => { this.setState({ showModal: true, deleteFlag: true }) }}>Delete</MenuItem>
-        </SplitButton> : ""}
-
-
-        <ul style={style}>
+        {
+          this.state.treeData.title != "" ?
+            <SplitButton bsStyle="default" bsSize="small" title={this.state.treeData.title} onClick={this.toggleChildren} id="split-button-basic" disabled={this.state.disableNode}>
+              <MenuItem eventKey="1" onClick={() => { this.setState({ showModal: true, addEditFlag: true }) }}>Add New Child</MenuItem>
+              <MenuItem eventKey="2" onClick={() => { this.setState({ showModal: true, addEditFlag: false, nodeTextValue: this.state.treeData.title }) }}>Edit Node</MenuItem>
+              <MenuItem eventKey="3" onClick={() => { this.setState({ showModal: true, deleteFlag: true }) }}>Delete Node</MenuItem>
+            </SplitButton> : ""
+        }
+        <ul style={displayStyle}>
           {childNodes}
         </ul>
 

@@ -23,17 +23,7 @@ module.exports = {
       { title: "Chapter 3" },
     ]
   },
-
   DEFAULT_STREAMING_DATA: [
-    {
-      data: "data1data1data1data1data1data1"
-    },
-    {
-      data: "data2data2data2data2data2data2"
-    },
-    {
-      data: "data3data2data2data2data2data3"
-    }
   ]
 
 }

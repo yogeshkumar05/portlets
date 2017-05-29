@@ -30,7 +30,7 @@ class DisplayPortlets extends React.Component {
 
           <hr />
           <footer className="footer">
-            <div>&copy; 2017 Portlets Demo</div>
+            <div>&copy; 2017 Portlets Demo by Yogesh</div>
           </footer>
         </div>
       </div>

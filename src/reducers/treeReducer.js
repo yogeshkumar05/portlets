@@ -1,31 +1,31 @@
 import constants from './../common/constants';
 export default function reducer(state = {
-  treeData:Object.assign({},constants.DEFAULT_TREE_DATA)
+  treeData: {}
 }, action) {
 
   switch (action.type) {
+    case "CREATE_TREE"://create tree with initial tree data
+      {
+        let initialData = {};
+        initialData.treeData = constants.DEFAULT_TREE_DATA;
+        return Object.assign({}, state, initialData);
+      }
+    case "ADD_PARENT"://add a new root to the existing tree
+      {
+        let newTree = {};
+        newTree.treeData = { title: action.payload.newNode };
+        newTree.treeData.childNodes = [state.treeData]
+        return Object.assign({}, state, newTree)
+      }
     case "ADD_NODE": {
-      let Obj=Object.assign({}, state);
-      Obj.treeData.title=state.treeData.title;
-   return Object.assign({}, state, Obj)
-   
-    }
-    case "UPDATE_NODE": {
-       let currentState=Object.assign({}, state.treeData);
-        currentState.childNodes.map((item, index)=>
-        {
-          if(item.title===action.payload.currentNode.title)
-          {
-            item.title=action.payload.newNode.title
-          }
-          
-        });
-return Object.assign({}, state, currentState);
-    }
-    case "DELETE_NODE":
-    {
 
     }
+    case "UPDATE_NODE": {
+    }
+    case "DELETE_NODE":
+      {
+
+      }
   }
   return state
 }
