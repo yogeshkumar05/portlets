@@ -8,8 +8,7 @@ $color-greay:#eee;
 .portlet-container
 {
     height: 670px;
-    overflow: auto;
-    
+    overflow: auto;   
 }
 .portlet-header
 {
@@ -42,6 +41,10 @@ body
 {
  position:fixed;
 }
+.tree-div
+{
+    margin:5px;
+}
 .resizeBtn
 {
     background-color: Transparent;
@@ -50,7 +53,5 @@ body
     cursor:pointer;
     overflow: hidden;
     outline:none;
-    margin:auto;
-
-   
+    margin:auto
 }

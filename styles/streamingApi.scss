@@ -1,15 +1,18 @@
+$latest-data-div:linear-gradient(-100deg, rgba(255, 255, 255, 0), #aeb5c4 85%, rgba(255, 255, 255, 0));
+$old-data-div:linear-gradient(-100deg, rgba(255, 255, 255, 0), yellow 85%, rgba(255, 255, 255, 0));
+@mixin margin5px()
+{
+    margin:5px;
+}
 .stream-data-div
 {
-    //border:1px solid red;
-    margin:5px;
-    background-image: linear-gradient(-100deg, rgba(255, 255, 255, 0), #aeb5c4 85%, rgba(255, 255, 255, 0));
- 
+   @include margin5px;
+    background-image: $latest-data-div;
 }
 
 .latest-data-div
 {
-   // border:1px solid red;
-    margin:5px;
+    @include margin5px;
     padding:5px;
-    background-image: linear-gradient(-100deg, rgba(255, 255, 255, 0), yellow 85%, rgba(255, 255, 255, 0));
+    background-image:$old-data-div; 
 }

@@ -1,25 +1,27 @@
 import React, { Component } from 'react';
 import { fetchStreamingData } from "./../actions/streamingActions"
 import { connect } from "react-redux"
-import store from "./../store"
 
 class StreamingApi extends Component {
     constructor(props) {
         super(props);
-        let data = this.props.data;
         this.state = {
-            displayPort: true,
-            streamingData: [],
-            newData: []
+            streamingData: [],//data received from streaming api
+            streamStopped: false,//to control stream demo start or stop
+            screenMinimized: false//to control screen minimize or maximize
         }
+
+        this.startStreaming=this.startStreaming.bind(this);
+        this.stopStreaming=this.stopStreaming.bind(this);
+        this.minimizePortlet=this.minimizePortlet.bind(this);
+        this.maximizePortlet=this.maximizePortlet.bind(this);
     }
-    componentWillMount() {
-    }
+
     componentDidMount() {
         this.timerID = setInterval(
             () => fetchStreamingData(),
             2000
-        );
+        );//call the streaming api every 2 seconds
     }
 
     componentWillUnmount() {
@@ -27,32 +29,61 @@ class StreamingApi extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.info(`props..${nextProps.count}
-     ${JSON.stringify(nextProps.tweets)}`);
-        let count = nextProps.count;
+        let count = nextProps.count;//api call number
         let streamingData = [];
+
+        /*push tha latest api response first*/
         streamingData.push({ count: count, data: nextProps.tweets })
         streamingData.push(...this.state.streamingData);
         this.setState({ streamingData })
     }
 
-    render() {
-        var style;
-        style = { display: "none" };
+    startStreaming()
+    {
+        this.timerID = setInterval(
+            () => fetchStreamingData(),
+            2000
+        ); 
+        this.setState({ streamStopped: false })
+    }
 
-        if (this.state.displayPort) {
-            style = { display: "block" };
+    stopStreaming()
+    {
+        clearInterval(this.timerID); 
+        this.setState({ streamStopped: true });
+    }
+
+    maximizePortlet()
+    {
+        this.setState({ screenMinimized: false});
+    }
+
+    minimizePortlet()
+    {
+        this.setState({ screenMinimized: true});
+    }
+
+    render() {
+        var displayPortStyle;
+        //dont display the portlet if screen is minimized, else display
+        if(this.state.screenMinimized)
+        {
+            displayPortStyle = { display: "none" };
         }
-        console.info("state" + JSON.stringify(this.state.streamingData))
+        else
+        {
+            displayPortStyle = { display: "block" };
+        }
+    
         let streamingDataDisplay = [];
         this.state.streamingData.map((tweet, index) => {
-            if (index == 0) {
+            if (index == 0) {//display the latest response first
                 let latestEntry = [];
                 latestEntry.push(<div><em>This is the latest data from Api call number {tweet.count}</em></div>)
                 tweet.data.map((data, index2) => {
                     latestEntry.push(<div>{data.text}. </div>)
                 })
-                streamingDataDisplay.push(<div className="latest-data-div">{latestEntry}</div>)
+                streamingDataDisplay.push(<div key={index} className="latest-data-div">{latestEntry}</div>)
             }
             else {
                 let streamingEntry = [];
@@ -60,24 +91,30 @@ class StreamingApi extends Component {
                 tweet.data.map((data, index2) => {
                     streamingEntry.push(<span>{data.text}. </span>)
                 })
-                streamingDataDisplay.push(<div className="stream-data-div">{streamingEntry}</div>)
+                streamingDataDisplay.push(<div key={index} className="stream-data-div">{streamingEntry}</div>)
             }
 
-        })
+        });
 
+        //display buttons to either start or stop streaming demo
+        let streamingController = this.state.streamStopped === true ? 
+        <button title="click to start streaming demo" className="resizeBtn" onClick={this.startStreaming}>start</button> : 
+        <button title="click to stop streaming demo" className="resizeBtn" onClick={this.stopStreaming}>stop</button>;
+
+        //display option to minimize or maximize portlet
+        let maximizeController = this.state.screenMinimized ? 
+        <button title="maximize" className="resizeBtn" onClick={this.maximizePortlet} >+</button> :
+        <button title="minimize" className="resizeBtn" onClick={this.minimizePortlet} >-</button>;
 
         return (
-            <div><button title="maximize" className="resizeBtn" onClick={() => { this.setState({ displayPort: true }) }} >+</button>
-                <button title="minimize" className="resizeBtn" onClick={() => { this.setState({ displayPort: false }) }} >-</button>
-                <button title="stop live stream demo" className="resizeBtn" onClick={() => { clearInterval(this.timerID) }} >x</button>
-                <div style={style}>
-                    <h3 className="portlet-header">Streaming API Portlet
-                </h3>
+            <div>
+                {maximizeController}
+                {streamingController}
 
+                <div style={displayPortStyle}>
+                    <h3 className="portlet-header">Streaming API Portlet </h3>
                     {streamingDataDisplay}
                 </div>
-
-
             </div>
         )
     }
@@ -87,5 +124,4 @@ export default connect(state => (
         tweets: state.streamReducer.tweets,
         count: state.streamReducer.count
     }
-
 ))(StreamingApi);

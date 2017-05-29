@@ -1,7 +1,7 @@
 export default function reducer(state = {
   tweets: [],
   error: null,
-  count:1
+  count: 1//for displaying the api call number
 }, action) {
 
   switch (action.type) {
@@ -9,7 +9,7 @@ export default function reducer(state = {
       return Object.assign({}, state, { error: action.payload })
     }
     case "FETCH_STREAM_FULFILLED": {
-      return Object.assign({}, state, { tweets: action.payload, count:action.payload.count });
+      return Object.assign({}, state, { tweets: action.payload, count: action.payload.count });
     }
   }
   return state
