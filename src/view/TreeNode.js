@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import classNames from 'classNames';
 import { addNodeAction } from './../actions/treeActions'
 import { DropdownButton, MenuItem, SplitButton, Modal, Button } from 'react-bootstrap';
 
