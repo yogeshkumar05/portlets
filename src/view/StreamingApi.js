@@ -112,7 +112,7 @@ class StreamingApi extends Component {
                 {streamingController}
 
                 <div style={displayPortStyle}>
-                    <h3 className="portlet-header">Streaming API Portlet </h3>
+                    <h3 className="portlet-header">Streaming Data Portlet </h3>
                     {streamingDataDisplay}
                 </div>
             </div>

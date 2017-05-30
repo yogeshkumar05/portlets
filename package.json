@@ -4,7 +4,9 @@
   "description": "3 portlets for demonstrating the streaming data, CRUD operations on tree data and demographic statistics",
   "main": "./src/index.js",
   "scripts": {
-    "start": "webpack-dev-server --hot --inline"
+    "dev": "webpack-dev-server",
+    "postinstall": "webpack -p",
+    "start": "node server.js"
   },
   "author": "Yogesh",
   "license": "ISC",
@@ -18,10 +20,14 @@
     "bootstrap": "^3.3.7",
     "classnames": "^2.2.5",
     "css-loader": "^0.28.1",
+    "highcharts-data": "^0.1.2",
+    "highcharts-drilldown": "^0.1.2",
+    "highcharts-more": "^0.1.2",
     "node-sass": "^4.5.3",
     "react": "^15.5.4",
     "react-bootstrap": "^0.31.0",
     "react-dom": "^15.5.4",
+    "react-highcharts": "^12.0.0",
     "react-redux": "^5.0.5",
     "redux": "^3.6.0",
     "sass-loader": "^6.0.5",

@@ -66,7 +66,7 @@ class TreeView extends Component {
     return (<div>
       {maximizeController}
       <div style={displayPortStyle}>
-        <h3>Tree Nodes</h3>
+        <h3>Tree Portlet</h3>
         <Button bsStyle="info" bsSize="small" onClick={() => this.setState({ showModal: true })}>+ Add A New Tree Root</Button>
         <TreeNode node={this.state.treeData} />
       </div>
