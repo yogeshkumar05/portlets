@@ -6,6 +6,9 @@
 
 All the portlets can be minimized, maximized and resized.
 
+Demo
+--------------------------------------------------------------------------
+The app is hosted at http://portletsdemo.herokuapp.com/ for a quick demo.
 
 Technologies Used:
 ---------------------------------------------------------------------------
